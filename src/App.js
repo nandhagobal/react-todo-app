@@ -1,23 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+
 
 function App() {
+  const [task,setTask]=useState("");
+  const [taskList,setTakList]=useState([]);
+  var onChangeHandler=(value)=>{
+  setTask(value);
+}
+  var addTaskHandler=()=>{
+  var tempArray=[...taskList];
+  tempArray.push(task);
+  setTakList(tempArray);
+}
+  var onCloseHandler=(index)=>{
+    var tempArray=[...taskList]
+    tempArray=tempArray.filter((ele,ind)=>{
+      return index!==ind
+    })
+    setTakList(tempArray);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Todo List React App</h1>
+      <input onChange={e=>onChangeHandler(e.target.value)}></input>
+      <button onClick={addTaskHandler}>Add Task</button>
+      {taskList.length==0? <p></p> : <p><b>Todo list</b></p>}
+      {taskList.map((ele,index)=>{
+        return <div key={index} className="item"><h4>{ele}</h4><span className="close" onClick={()=>{onCloseHandler(index)}}>X</span></div>
+      })}
     </div>
   );
 }
