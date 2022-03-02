@@ -25,7 +25,7 @@ function App() {
       <h1>Todo List React App</h1>
       <input onChange={e=>onChangeHandler(e.target.value)}></input>
       <button onClick={addTaskHandler}>Add Task</button>
-      {taskList.length==0? <p></p> : <p><b>Todo list</b></p>}
+      {taskList.length==0? <p>No Task is added</p> : <p><b>Todo list</b></p>}
       {taskList.map((ele,index)=>{
         return <div key={index} className="item"><h4>{ele}</h4><span className="close" onClick={()=>{onCloseHandler(index)}}>X</span></div>
       })}
