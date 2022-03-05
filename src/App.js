@@ -11,14 +11,14 @@ function App() {
   var addTaskHandler=()=>{
   var tempArray=[...taskList];
   tempArray.push(task);
-  setTakList(tempArray);
+  setTaskList(tempArray);
 }
   var onCloseHandler=(index)=>{
     var tempArray=[...taskList]
     tempArray=tempArray.filter((ele,ind)=>{
       return index!==ind
     })
-    setTakList(tempArray);
+    setTaskList(tempArray);
   }
   return (
     <div className="App">
